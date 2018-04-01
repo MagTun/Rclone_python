@@ -15,8 +15,6 @@ path_to_rclone_log_folder = r'path to folder of all rclon log\zzLogRsync\*'
 possible_action_rclone= ['Copied (replaced existing)', 'Copied (new)','Updated', 'Duplicate', 'Couldn\'t delete', 'Not copying', 'Not updating','Not deleting', 'Others']
 
 
-
-
 ## get lastest modified log of rclone
 list_of_files = glob.glob(path_to_rclone_log_folder) # * means all if need specific format then *.csv
 latest_file = max(list_of_files, key=os.path.getmtime)
@@ -100,7 +98,7 @@ def display_dico(log_actions):
 	print("Actions not done:" + (', ').join(empty_keys))
 	
 	
-## choose which action to display = by date
+## choose which action to display = by date/type 
 def choose_timeframe():
 	timeframe_select_log = easygui.buttonbox ("See previous actions from log", choices = ["Actions from Last Hour","Actions from 4 Hours","Actions from today", "Actions from beginning of time", "All Log", "Close"])
 
@@ -127,7 +125,7 @@ def choose_timeframe():
 		display_log_based_on_condition()
 		
 		
-# by default duisplay log from last 4h 
+# by default display log from last 4h 
 datetime_one_hour_ago = datetime.datetime.now() - datetime.timedelta(hours = 4)
 # print(f"{datetime.datetime.now():%Y/%m/%d}")
 print("\n\n\n+++++++++++++ All actions from last 4h (not full log) +++++++++++++\n\n\n")
